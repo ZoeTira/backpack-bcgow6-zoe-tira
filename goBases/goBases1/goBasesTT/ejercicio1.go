@@ -12,8 +12,11 @@ var world string
 
 func main()  {
 	world := "Hello"
-	fmt.Println(len(world))
+	fmt.Printf("Word: %v \n", world)
 
+	fmt.Printf("Number of letters: %v \n", len(world))
+
+	fmt.Println("Letters:")
 	for i := 0; i < len(world); i++ {
 		fmt.Println(string(world[i]))
 	}

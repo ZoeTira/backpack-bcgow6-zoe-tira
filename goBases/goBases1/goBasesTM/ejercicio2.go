@@ -7,7 +7,6 @@ Imprime los valores de las variables en consola.
 ¿Qué tipo de dato le asignarías a las variables?
 */
 
-
 package main
 
 import "fmt"
