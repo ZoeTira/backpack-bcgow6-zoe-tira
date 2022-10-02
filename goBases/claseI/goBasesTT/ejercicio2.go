@@ -7,6 +7,10 @@ interés a los que su sueldo es mejor a $100.000.
 Es necesario realizar una aplicación que tenga estas variables y que imprima un mensaje de acuerdo a cada caso.
 
 Tip: tu código tiene que poder imprimir al menos 3 mensajes diferentes.
+Edad
+Empleado?
+Antiguedad
+Salario
 */
 
 package main
@@ -14,6 +18,24 @@ package main
 
 import "fmt"
 
+var (
+	age int = 26
+	employee bool= true
+	seniority int = 2
+	salary float64 = 150000
+
+)
 func main()  {
-	people := map[string]string{}
+	if((age > 22) && (employee) && (seniority > 1)){
+		if(salary > 100000){
+			fmt.Println("Podrá acceder al préstamo pagando impuestos")
+		} else{
+			fmt.Println("Podrá acceder al préstamo sin pagar impuestos")
+		}
+
+	} else {
+		fmt.Println("No podrá acceder al préstamo")
+	}
+
+
 }

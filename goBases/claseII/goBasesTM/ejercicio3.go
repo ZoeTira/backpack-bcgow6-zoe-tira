@@ -15,26 +15,29 @@ import (
     "fmt"
 )
 
-func calcularSalario(min int, cat string) float64{
+func calculateSalary(minutes int, category string) (salary float64){
 
-	switch cat {
+	switch category {
 		case "A":{
-			salario := ((float64(min) * 3000.0)/60)
-			salario = salario * 1.5
-			return salario
+			salary = ((float64(minutes) * 3000.0)/60)
+			salary *= 1.5
 		}
+
 		case "B":{
-			salario := ((float64(min) * 1500.0)/60)
-			salario = salario * 1.2
-			return salario
+			salary = ((float64(minutes) * 1500.0)/60)
+			salary *= 1.2
 		}
+
 		case "C":
-			return ((float64(min) * 1000.0)/60)
+			salary = ((float64(minutes) * 1000.0)/60)
 	}
-	return 0
+
+	return salary
 
 }
+
 func main() {
-	result := calcularSalario(60, "B")
+	result := calculateSalary(60, "B")
+
 	fmt.Println(result)
 }

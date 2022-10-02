@@ -10,18 +10,18 @@ import (
     "fmt"
 )
 
-func CalcularSalario(salario float64) float64{
+func calculateSalary(salary float64) float64{
 
-	if(salario > 50000){
-		return salario * 0.83
+	if(salary > 50000){
+		return salary * 0.83
 	} 
-	if(salario > 150000){
-		return salario * 0.73
+	if(salary > 150000){
+		return salary * 0.73
 	}
-	return salario
+	return salary
 }
 
 func main() {
-	result := calcularSalario(151000)
+	result := calculateSalary(151000)
 	fmt.Println(result)
 }
