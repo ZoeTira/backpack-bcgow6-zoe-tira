@@ -1,0 +1,10 @@
+{
+    "Id":1,
+    "Name":"Nootbook",
+    "Colour": "Green",
+    "Price": 10,
+    "Stock": 10,
+    "Code": "123ABC",
+    "Published": true,
+    "creationDate": "2020-01-01"
+}
