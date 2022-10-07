@@ -8,7 +8,7 @@ transacción.
 2. Dentro del mismo escribí un JSON que permita tener un array de productos, usuarios o transacciones con todas sus variantes.
 */
 
-package e1
+package main
 
 import (
 	"encoding/json"
@@ -45,8 +45,8 @@ type transaction struct{
 	Receiver string `json:"Receiver"`
 	TransactionDate string `json:"TransactionDate"`
 }*/
-
-func writejson() {
+var products []Product
+func main() {
      p := Product{
 		Id: 1,
         Name: "Nootbook",
@@ -58,17 +58,33 @@ func writejson() {
         CreationDate: "2020-01-01",
 	 }
 
+	 p2 := Product{
+		Id: 2,
+        Name: "Tablet",
+		Colour: "Black",
+        Price: 400.00,
+		Stock: 20,
+        Code: "123TABLET",
+		Published: true,
+        CreationDate: "2020-01-01",
+	 }
+	 products = append(products,p)
+	 products = append(products, p2)
 
-
-	 jsonData, err := json.Marshal(p)
-
+	jsonData, err := json.Marshal(products)
 	 if(err != nil){
 		fmt.Println(err.Error())
 	 }
 
-	 err1 := os.WriteFile("../jsons/products.json", []byte(jsonData), 0644)
+	/*  jsonData2, err2 := json.Marshal(p2)
+	 if(err2 != nil){
+		fmt.Println(err2.Error())
+	 }*/
+
+	 err1 := os.WriteFile("../../../jsons/products.json", []byte(jsonData), 0644)
 	 if(err1 != nil){
 		fmt.Println(err1.Error())
 	 }
+
 	
 }

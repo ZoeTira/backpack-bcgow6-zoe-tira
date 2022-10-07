@@ -11,9 +11,6 @@ nuevo registro (sin tener una variable de último ID a nivel global).*/
 package main
 
 import (
-    "encoding/json"
-    "fmt"
-	
     "github.com/gin-gonic/gin"
 )
 
@@ -25,26 +22,29 @@ type request struct{
 
 var products []request
 
+func createProducts(c *gin.Context) {
+	var req request
+	err := c.ShouldBindJSON(&req)
 
+	if (err!= nil) {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	//Obtengo ultimo id, le sumo uno, lo gurrado
+	req.Id = len(products)+1
+
+	//Agrego lo que obtube
+	products = append(products, req)
+
+	//Retorno status con respuesta
+	c.JSON(200, req)
+
+}
+	
 func main()  {
 	r := gin.Default()
 
 	//Endpoint que recibe la entidad
-	r.POST("/products", func(c *gin.Context) {
-		var req request
-		err := c.ShouldBindJSON(&req)
-
-        if (err!= nil) {
-            c.JSON(400, gin.H{"error": err.Error()})
-            return
-        }
-		//Obtengo ultimo id, le sumo uno, lo gurrado
-		req.Id = len(products)+1
-
-		//Agrego lo que obtube
-		products = append(products, req)
-		c.JSON(200, req)
-
-	})
+	r.POST("/create-products", createProducts)
 	r.Run()
 }

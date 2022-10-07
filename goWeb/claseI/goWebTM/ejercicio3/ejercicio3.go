@@ -10,12 +10,12 @@ Ya habiendo creado y probado nuestra API que nos saluda, generamos una ruta que 
 package main
 
 import (
-  //  "encoding/json"
-	"github.com/gin-gonic/gin"
-    "os"
+	"encoding/json"
 	"fmt"
-	//"github.com/ZoeTira/e1"
-)
+	"os"
+	"github.com/ZoeTira/backpack-bcgow6-zoe-tira/goWeb/claseI/domain"
+	"github.com/gin-gonic/gin"
+) /*
 type Product struct{
 	Id int `json:"Id"`
     Name string `json:"Name"`
@@ -25,25 +25,36 @@ type Product struct{
 	Code string `json:"Code"`
 	Published bool `json:"Published"`
 	CreationDate string `json:"creationDate"`
-}
-var products []string
+}*/
+var products []domain.Product
 
 func main() {
-	data, err := os.ReadFile("../../jsons/products.json")
-	if(err != nil){
+	data, err := os.ReadFile("../../../jsons/products.json")
+	if err != nil {
 		fmt.Println(err.Error())
 	}
-	fmt.Println(string(data))
+	
+	//fmt.Println(string(data))
+	p:=domain.Product{}
+	//data, lo paso a algo que pueda leer
+	data = []byte(data)
+	//Lo formateo
+	err = json.Unmarshal(data, &p)
+    if err!= nil {
+		fmt.Println(err.Error())
+	}
 
-	products = append(products, string(data))
-    //Asigno un puerto, por defecto es 8080
+	fmt.Println(p)
+
+	products = append(products, p)
+	//Asigno un puerto, por defecto es 8080
 	router := gin.Default()
 
-	//Hago la peticion get, uso el context de gin 
-	router.GET("/products", func (c *gin.Context){
+	//Hago la peticion get, uso el context de gin
+	router.GET("/products", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-            "products": products,
-        })
+			"products": products,
+		})
 
 	})
 
