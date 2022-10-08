@@ -6,13 +6,25 @@ Se debe implementar el router para los diferentes endpoints
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"github.com/ZoeTira/backpack-bcgow6-zoe-tira/goWeb/firstAPI/cmd/server/handle"
 	"github.com/ZoeTira/backpack-bcgow6-zoe-tira/goWeb/firstAPI/internal/products"
+	"github.com/ZoeTira/backpack-bcgow6-zoe-tira/goWeb/firstAPI/pkg/store"
+	"github.com/gin-gonic/gin"
+
+	"log"
+
+	"github.com/joho/godotenv"
 )
 
 func main()  {
-	repo := products.NewRepository()
+	//Leo mi .env
+	err := godotenv.Load()
+	db := store.New(store.FileType, "./products.json")
+	if err!= nil {
+        log.Fatal(err.Error())
+    }
+
+	repo := products.NewRepository(db)
 	service := products.NewService(repo)
 	controller := handle.NewProduct(service)
 
