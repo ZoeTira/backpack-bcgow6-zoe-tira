@@ -14,7 +14,7 @@ import (
 
 	"github.com/ZoeTira/backpack-bcgow6-zoe-tira/goWeb/firstAPI/internal/products"
 	"github.com/gin-gonic/gin"
-	"github.com/ZoeTira/backpack-bc-gow6-zoe-tira/goWeb/firstAPI/pkg/web"
+	"github.com/ZoeTira/backpack-bcgow6-zoe-tira/goWeb/firstAPI/pkg/web"
 )
 
 type request struct{
