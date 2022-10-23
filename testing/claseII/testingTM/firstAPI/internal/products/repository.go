@@ -121,14 +121,13 @@ func (r *repository) Delete(id int) (Product, error) {
 		}
 	}
 
-	return Product{}, fmt.Errorf("Product &d not found", id)
+	return Product{}, fmt.Errorf("Product %d not found", id)
 }
 
 func (r *repository) UpdateNamePrice(id int, name string, price float64) (Product, error) {
 	update := false
 	var index int
 	//Creo la variable donde voy a guardar lo que leo
-	var ps []Product
 
 	//Desde el repositorio llamo a la bd y leo, le paso la variable donde
 	//guardar los datos
